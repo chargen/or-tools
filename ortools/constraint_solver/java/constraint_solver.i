@@ -503,6 +503,11 @@ namespace operations_research {
 %rename (store) Assignment::Store;
 %rename (unperformed) Assignment::Unperformed;
 
+// AssignmentContainer
+%ignore AssignmentContainer::MutableElement;
+%ignore AssignmentContainer::MutableElementOrNull;
+%ignore AssignmentContainer::Element;
+%ignore AssignmentContainer::ElementPtrOrNull;
 // Rename rules on AssignmentContainer;
 %rename (add) AssignmentContainer::Add;
 %rename (addAtPosition) AssignmentContainer::AddAtPosition;
@@ -513,12 +518,6 @@ namespace operations_research {
 %rename (copy) AssignmentContainer::Copy;
 %rename (copyIntersection) AssignmentContainer::CopyIntersection;
 %rename (contains) AssignmentContainer::Contains;
-%rename (mutableElement) AssignmentContainer::MutableElement;
-// No MutableElementOrNull
-%ignore AssignmentContainer::MutableElementOrNull;
-%rename (element) AssignmentContainer::Element;
-// No ElementPtrOrNull
-%ignore AssignmentContainer::ElementPtrOrNull;
 // %unignore AssignmentContainer::elements;
 %rename (size) AssignmentContainer::Size;
 %rename (store) AssignmentContainer::Store;
