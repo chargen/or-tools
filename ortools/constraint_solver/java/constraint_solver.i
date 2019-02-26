@@ -528,16 +528,17 @@ namespace operations_research {
 %rename (deactivate) AssignmentElement::Deactivate;
 %rename (activated) AssignmentElement::Activated;
 
-// Rename rules on IntVarElement
+// IntVarElement
+// Ignored:
+%ignore IntVarElement::LoadFromProto;
+%ignore IntVarElement::WriteToProto;
+// Rename rules:
+%unignore IntVarElement;
 %rename (reset) IntVarElement::Reset;
 %rename (clone) IntVarElement::Clone;
 %rename (copy) IntVarElement::Copy;
 %rename (store) IntVarElement::Store;
 %rename (restore) IntVarElement::Restore;
-// No LoadFromProto
-%ignore IntVarElement::LoadFromProto;
-// No WriteToProto
-%ignore IntVarElement::WriteToProto;
 %rename (min) IntVarElement::Min;
 %rename (setMin) IntVarElement::SetMin;
 %rename (max) IntVarElement::Max;
@@ -547,7 +548,12 @@ namespace operations_research {
 %rename (setRange) IntVarElement::SetRange;
 %rename (var) IntVarElement::Var;
 
-// Rename rules on IntervalVarElement
+// IntervalVarElement
+// Ignored:
+%ignore IntervalVarElement::LoadFromProto;
+%ignore IntervalVarElement::WriteToProto;
+// Rename rules:
+%unignore IntervalVarElement;
 %rename (clone) IntervalVarElement::Clone;
 %rename (copy) IntervalVarElement::Copy;
 %rename (durationMax) IntervalVarElement::DurationMax;
@@ -556,8 +562,6 @@ namespace operations_research {
 %rename (endMax) IntervalVarElement::EndMax;
 %rename (endMin) IntervalVarElement::EndMin;
 %rename (endValue) IntervalVarElement::EndValue;
-// No LoadFromProto
-%ignore IntervalVarElement::LoadFromProto;
 %rename (performedMax) IntervalVarElement::PerformedMax;
 %rename (performedMin) IntervalVarElement::PerformedMin;
 %rename (performedValue) IntervalVarElement::PerformedValue;
@@ -584,16 +588,17 @@ namespace operations_research {
 %rename (startValue) IntervalVarElement::StartValue;
 %rename (store) IntervalVarElement::Store;
 %rename (var) IntervalVarElement::Var;
-// No WriteToProto
-%ignore IntervalVarElement::WriteToProto;
 
-// Rename rules on SequenceVarElement.
+// SequenceVarElement
+// Ignored:
+%ignore SequenceVarElement::LoadFromProto;
+%ignore SequenceVarElement::WriteToProto;
+// Rename rules:
+%unignore SequenceVarElement;
 %rename (backwardSequence) SequenceVarElement::BackwardSequence;
 %rename (clone) SequenceVarElement::Clone;
 %rename (copy) SequenceVarElement::Copy;
 %rename (forwardSequence) SequenceVarElement::ForwardSequence;
-// No LoadFromProto
-%ignore SequenceVarElement::LoadFromProto;
 %rename (reset) SequenceVarElement::Reset;
 %rename (restore) SequenceVarElement::Restore;
 %rename (setBackwardSequence) SequenceVarElement::SetBackwardSequence;
@@ -603,8 +608,6 @@ namespace operations_research {
 %rename (store) SequenceVarElement::Store;
 %rename (unperformed) SequenceVarElement::Unperformed;
 %rename (var) SequenceVarElement::Var;
-// No WriteToProto
-%ignore SequenceVarElement::WriteToProto;
 
 // Rename rules on SolutionCollector.
 %rename (add) SolutionCollector::Add;
@@ -1533,5 +1536,5 @@ namespace operations_research {
 %template(RevBool) Rev<bool>;
 %template(AssignmentIntContainer) AssignmentContainer<IntVar, IntVarElement>;
 %template(AssignmentIntervalContainer) AssignmentContainer<IntervalVar, IntervalVarElement>;
-%template(AssignmentSequenceContainer) AssignmentContainer<SequenceVar,SequenceVarElement>;
+%template(AssignmentSequenceContainer) AssignmentContainer<SequenceVar, SequenceVarElement>;
 }  // namespace operations_research
