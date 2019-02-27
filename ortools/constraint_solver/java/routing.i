@@ -60,24 +60,18 @@ import java.util.function.LongBinaryOperator;
 // see https://docs.oracle.com/javase/8/docs/api/java/util/function/LongUnaryOperator.html
 import java.util.function.LongUnaryOperator;
 %}
-%ignore RoutingModel::RegisterStateDependentTransitCallback;
-%ignore RoutingModel::StateDependentTransitCallback;
-%ignore RoutingModel::MakeStateDependentTransit;
+// Ignored:
 %ignore RoutingModel::AddDimensionDependentDimensionWithVehicleCapacity;
 %ignore RoutingModel::AddMatrixDimension(
     std::vector<std::vector<int64> > values,
     int64 capacity,
     bool fix_start_cumul_to_zero,
     const std::string& name);
-
-%extend RoutingModel {
-  void addMatrixDimension(const std::vector<std::vector<int64> >& values,
-                          int64 capacity, bool fix_start_cumul_to_zero,
-                          const std::string& name) {
-    $self->AddMatrixDimension(values, capacity, fix_start_cumul_to_zero, name);
-  }
-}
-
+%ignore RoutingModel::MakeStateDependentTransit;
+%ignore RoutingModel::RegisterStateDependentTransitCallback;
+%ignore RoutingModel::StateDependentTransitCallback;
+// API:
+%unignore RoutingModel;
 %rename (activeVar) RoutingModel::ActiveVar;
 %rename (addAllActive) RoutingModel::AddAllActive;
 %rename (addAtSolutionCallback) RoutingModel::AddAtSolutionCallback;
@@ -196,10 +190,16 @@ import java.util.function.LongUnaryOperator;
 %rename (vehicleVar) RoutingModel::VehicleVar;
 %rename (vehicleVars) RoutingModel::VehicleVars;
 %rename (writeAssignment) RoutingModel::WriteAssignment;
-
-// Add PickupAndDeliveryPolicy enum value to RoutingModel (like RoutingModel::Status)
-// For C++11 strongly typed enum SWIG support see https://github.com/swig/swig/issues/316
+// Extend:
 %extend RoutingModel {
+  void addMatrixDimension(const std::vector<std::vector<int64> >& values,
+                          int64 capacity, bool fix_start_cumul_to_zero,
+                          const std::string& name) {
+    $self->AddMatrixDimension(values, capacity, fix_start_cumul_to_zero, name);
+  }
+
+  // Add PickupAndDeliveryPolicy enum value to RoutingModel (like RoutingModel::Status)
+  // For C++11 strongly typed enum SWIG support see https://github.com/swig/swig/issues/316
   static const RoutingModel::PickupAndDeliveryPolicy ANY =
   operations_research::RoutingModel::PickupAndDeliveryPolicy::ANY;
   static const RoutingModel::PickupAndDeliveryPolicy LIFO =

@@ -1133,7 +1133,6 @@ import java.lang.Runnable;
 %rename (var) Constraint::Var;
 
 // DisjunctiveConstraint
-// Keep reference to FunctionalInterface to avoid GC to collect them early
 %typemap(javaimports) DisjunctiveConstraint %{
 // Used to wrap IndexEvaluator2
 // see https://docs.oracle.com/javase/8/docs/api/java/util/function/LongBinaryOperator.html
@@ -1145,7 +1144,6 @@ import java.util.function.LongBinaryOperator;
 %rename (transitionTime) DisjunctiveConstraint::TransitionTime;
 
 // Pack
-// Keep reference to FunctionalInterface to avoid GC to collect them early
 %typemap(javaimports) Pack %{
 // Used to wrap IndexEvaluator1
 // see https://docs.oracle.com/javase/8/docs/api/java/util/function/LongUnaryOperator.html
@@ -1361,11 +1359,6 @@ import java.util.function.Supplier;
 
 
 // PathOperator
-// Ignored:
-// - SkipUnchanged()
-// - Next()
-// - Path()
-// - number_of_nexts()
 %feature("director") PathOperator;
 %typemap(javaimports) PathOperator %{
 // Used to wrap start_empty_path_class
@@ -1373,9 +1366,11 @@ import java.util.function.Supplier;
 // https://docs.oracle.com/javase/8/docs/api/java/util/function/LongToIntFunction.html
 import java.util.function.LongToIntFunction;
 %}
+// Ignored:
 %ignore PathOperator::Next;
 %ignore PathOperator::Path;
 %ignore PathOperator::SkipUnchanged;
+%ignore PathOperator::number_of_nexts;
 %rename (neighbor) PathOperator::MakeNeighbor;
 // Protected methods
 %rename (getBaseNodeRestartPosition) PathOperator::GetBaseNodeRestartPosition;
@@ -1401,7 +1396,6 @@ import java.util.function.LongToIntFunction;
 // - IsVarSynced()
 %feature("director") IntVarLocalSearchFilter;
 %feature("nodirector") IntVarLocalSearchFilter::Synchronize;  // Inherited.
-// Keep reference to FunctionalInterface to avoid GC to collect them early
 %typemap(javaimports) IntVarLocalSearchFilter %{
 // Used to wrap ObjectiveWatcher
 // see https://docs.oracle.com/javase/8/docs/api/java/util/function/LongConsumer.html
