@@ -766,6 +766,8 @@ import java.lang.Runnable;
 %}
 
 // Ignore rules on Solver.
+%ignore Solver::SearchLogParameters;
+%ignore Solver::MakeSearchLog(SearchLogParameters parameters);
 %ignore Solver::MakeIntVarArray;
 %ignore Solver::MakeBoolVarArray;
 %ignore Solver::MakeFixedDurationIntervalVarArray;
