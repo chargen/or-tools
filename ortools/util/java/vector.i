@@ -111,7 +111,7 @@ VECTOR_AS_JAVA_ARRAY(double, double, Double);
 %typemap(jtype) const std::vector<std::vector<CType> >& #JavaType "[][]"
 %typemap(jstype) const std::vector<std::vector<CType> >& #JavaType "[][]"
 %typemap(javain) const std::vector<std::vector<CType> >& "$javainput"
-%typemap(in) const std::vector<std::vector<CType> >& (std::vector<std::vector<CTYPE> > result) %{
+%typemap(in) const std::vector<std::vector<CType> >& (std::vector<std::vector<CType> > result) %{
   const int size = jenv->GetArrayLength($input);
   result.clear();
   result.resize(size);
@@ -123,7 +123,7 @@ VECTOR_AS_JAVA_ARRAY(double, double, Double);
     j ## JavaType * const values =
         jenv->Get ## JavaTypeName ## ArrayElements((j ## JavaType ## Array)inner_array, NULL);
     for (int index2 = 0; index2 < inner_size; ++index2) {
-      const CTYPE value = values[index2];
+      const CType value = values[index2];
       result[index1].emplace_back(value);
     }
     jenv->Release ## JavaTypeName ## ArrayElements((j ## JavaType ## Array)inner_array, values, JNI_ABORT);
@@ -134,9 +134,9 @@ VECTOR_AS_JAVA_ARRAY(double, double, Double);
 
 %enddef  // MATRIX_AS_JAVA_ARRAY
 
-VECTOR_AS_JAVA_ARRAY(int, int, Int);
-VECTOR_AS_JAVA_ARRAY(int64, long, Long);
-VECTOR_AS_JAVA_ARRAY(double, double, Double);
+MATRIX_AS_JAVA_ARRAY(int, int, Int);
+MATRIX_AS_JAVA_ARRAY(int64, long, Long);
+MATRIX_AS_JAVA_ARRAY(double, double, Double);
 
 // Same, for std::vector<CType*>, where CType is not a primitive type.
 // CastOp defines how to cast the output of CallStaticLongMethod to CType*;
