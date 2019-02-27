@@ -69,7 +69,9 @@ import java.util.function.LongUnaryOperator;
     const std::string& name);
 %ignore RoutingModel::MakeStateDependentTransit;
 %ignore RoutingModel::RegisterStateDependentTransitCallback;
+%ignore RoutingModel::TransitCallback;
 %ignore RoutingModel::StateDependentTransitCallback;
+%ignore RoutingModel::UnaryTransitCallbackOrNull;
 // API:
 %unignore RoutingModel;
 %rename (activeVar) RoutingModel::ActiveVar;
@@ -183,8 +185,6 @@ import java.util.function.LongUnaryOperator;
 %rename (solveFromAssignmentWithParameters) RoutingModel::SolveFromAssignmentWithParameters;
 %rename (solveWithParameters) RoutingModel::SolveWithParameters;
 %rename (start) RoutingModel::Start;
-%rename (transitCallback) RoutingModel::TransitCallback;
-%rename (unaryTransitCallbackOrNull) RoutingModel::UnaryTransitCallbackOrNull;
 %rename (unperformedPenalty) RoutingModel::UnperformedPenalty;
 %rename (unperformedPenaltyOrValue) RoutingModel::UnperformedPenaltyOrValue;
 %rename (vehicleVar) RoutingModel::VehicleVar;
